@@ -46,11 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (context, index) {
                         var todo = state.todos[index];
                         return GestureDetector(
-                          onLongPress: (){
+                          onDoubleTap: (){
                             var newToDo = ToDo(
                                 item: todo.item,
                                 description: todo.description,
-                                uuid: todo.uuid ?? Uuid().v4().toString(),
+                                uuid: todo.uuid,
                                 createdAt: DateTime.now(),
                                 completed: true
                             );

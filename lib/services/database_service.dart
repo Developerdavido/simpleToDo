@@ -71,6 +71,7 @@ class DatabaseService {
   Future<List<ToDo>> getTodoList() async {
     final db = await database;
     List<Map<String, dynamic>> maps = await db.query(toDoTable);
+    print(maps.toString());
     return List.generate(maps.length, (index) {
       return ToDo.fromJson(maps[index]);
     });

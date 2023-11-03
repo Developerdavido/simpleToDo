@@ -35,17 +35,17 @@ class TodoWidget extends StatelessWidget {
               children: [
                 Text(todo.item!,
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    decorationStyle: todo.completed! ? TextDecorationStyle.dashed : null
+                    decoration: todo.completed! ? TextDecoration.lineThrough : null
                   ),
 
                 ),
                 SizedBox(
                   height: 16.h,
                 ),
-                Text("Activity due on: ${todo.formatTheDate(todo.createdAt!)}",
+                Text(todo.completed! ? "Completed" : "Activity due on: ${todo.formatTheDate(todo.createdAt!)}",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.w300,
-                    color: AppColors.grey
+                    color: todo.completed! ? Colors.green : AppColors.grey
                   ),
                 ),
               ],

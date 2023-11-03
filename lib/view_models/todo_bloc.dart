@@ -42,10 +42,12 @@ class ToDoBloc extends Bloc<TodoEvents, ToDoState> {
     }
   }
 
+  //update all todos
   FutureOr<void> _mapUpdateAToDoToState(UpdateATodo event, Emitter<ToDoState> emit) async {
     try {
-      final List<ToDo> todos = state.todos;
+      List<ToDo> todos = state.todos;
       await database.updateTodo(event.toDo);
+      todos = await database.getTodoList();
       emit(ToDoLoaded(todos));
     } catch (e) {
       print(e);
@@ -53,6 +55,7 @@ class ToDoBloc extends Bloc<TodoEvents, ToDoState> {
     }
   }
 
+  //get all the todos and keep state
   FutureOr<void> _mapGetToDosToState(GetTodos event, Emitter<ToDoState> emit) async{
     try {
       List<ToDo> todos = await database.getTodoList();
