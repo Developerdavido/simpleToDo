@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:simple_to_do/blocs/todo_bloc/todo_bloc.dart';
+import 'package:simple_to_do/blocs/todo_bloc/todo_events.dart';
 import 'package:simple_to_do/constants/colors.dart';
 import 'package:simple_to_do/models/todo.dart';
-import 'package:simple_to_do/view_models/todo_bloc.dart';
-import 'package:simple_to_do/view_models/todo_events/todo_events.dart';
 class TodoWidget extends StatelessWidget {
   final ToDo todo;
   const TodoWidget({Key? key, required this.todo}) : super(key: key);
@@ -52,7 +52,7 @@ class TodoWidget extends StatelessWidget {
             ),
             GestureDetector(
               onTap: (){
-                context.read<ToDoBloc>().add(RemoveATodo(todo));
+                context.read<ToDoBloc>().add(DeleteTodo(toDo: todo));
               },
               child: Icon(
                 Icons.delete_outline,

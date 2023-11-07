@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:simple_to_do/blocs/todo_bloc/todo_bloc.dart';
+import 'package:simple_to_do/blocs/todo_bloc/todo_events.dart';
 import 'package:simple_to_do/constants/colors.dart';
 import 'package:simple_to_do/models/todo.dart';
-import 'package:simple_to_do/view_models/todo_bloc.dart';
-import 'package:simple_to_do/view_models/todo_events/todo_events.dart';
 import 'package:simple_to_do/widgets/custom_button.dart';
 import 'package:simple_to_do/widgets/custom_text_field.dart';
 import 'package:uuid/uuid.dart';
@@ -36,9 +36,7 @@ class _AddANewTodoState extends State<AddANewTodo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.primaryColor,
-        foregroundColor: AppColors.onPrimaryColor,
-        title: Text("Add a new Todo", style: Theme.of(context).textTheme.headlineLarge,),
+        title: const Text("Add a new Todo"),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 25.h, vertical: 25.h),
@@ -74,8 +72,8 @@ class _AddANewTodoState extends State<AddANewTodo> {
                     );
                     if (globalKey.currentState!.validate()) {
                       widget.todo != null
-                          ? context.read<ToDoBloc>().add(UpdateATodo(todo))
-                          : context.read<ToDoBloc>().add(AddATodo(todo));
+                          ? context.read<ToDoBloc>().add(UpdateATodo(toDo: todo))
+                          : context.read<ToDoBloc>().add(AddATodo(toDo: todo));
                     }
                     itemCtrl.text = "";
                     descriptionCtrl.text = "";
